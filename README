@@ -1,0 +1,60 @@
+Arsene Ioana-Emanuela, EGOV1-A
+
+Pentru a implementa acest proiect am ales limbajul de programare PHP (versiunea 8.1) in
+asociere cu framework-ul Symfony (versiunea 6.3).
+
+Proiectul foloseste docker pentru portare.
+
+Link catre repository-ul de github:
+
+Etapa 1 - Integrare Recombee
+
+Pentru aceasta etapa am implementat API-urile cerute (upload ID-uri de produse, salvare
+proprietati produse, salvare valori proprietati produse), dar si cateva API-uri suplimentare,
+pe care le-am considerat necesare in dezvoltarea unei logici corecte (listare produse, stergere
+produs, listare proprietati produs, stergere proprietate produs, afisare infromatii proprietate,
+afisare valori)
+
+Clasele definite pentru aceasta implementare sunt:
+* Controller/ItemController.php
+    -> aici sunt implementate metodele care apeleaza API-urile externe Recombee
+    -> aici am initializat si Clientul Recombee pentru a putea apela API-urile
+    -> acesta are nevoie de trimiterea token-ului privat al bazei de date Recombee
+    -> ca varianta pentru salvarea datelor de configurare exista environment variables, definite in
+    fisierele .env specifice mediului de dezvoltare, insa din motive de securitate am ales sa folosesc
+    secrete. Astfel am salvat tokenul privat intr-un secret si l-am transmis ca parametru folosind
+    ParameterBagInterface.
+
+*Dataset/books.csv
+    -> acesta este fisierul .csv care contine datasetul ales.
+    -> am optat pentru un dataset cu date despre carti de pe platforma Kaggle.
+    -> datasetul contine urmatoarele proprietati:
+        bookID, title, authors, average_rating, isbn, isbn13, language_code, num_pages, ratings_count, text_reviews_count,
+        publication_date, publisher
+    -> toate aceste proprietati sunt de tip string, mai putin average_rating (double), num_pages (int),
+        ratings_count (int), text_reviews_count (int)
+
+* Service/ItemService.php
+    -> aici am definit metodele ajutatoare pentru prelucrarea datelor
+    -> am ales sa le definesc intr-un serviciu pentru a nu incarca logica din Controller
+    si pentru a le putea reutiliza usor in orice alte clase unde ar mai putea fi nevoie de ele.
+    -> in acest fisier am definit metoda de parsare a fisierului .csv cu dataset-ul ales
+    -> de asemenea, aici am implementat o metoda recursiva de a parcurge un array multidimensional si
+    de a verifica daca o anumita valoare se afla intr-un anumit set cheie-valoare din array
+
+*DBAL/Types/Enum:
+    -> in acest folder sunt definite 2 clase de enum-uri, pe care le-am folosit pentru a putea salva mai usor
+    si mai "clean" tipurile de proprietati / cuvintele rezervate, pe care le-am folsit apoi in erorile de validare
+    din cadrul prelucrarilor de API-uri
+
+*migrations/, Entity/, Form/, Repository/:
+    -> acestea sunt foldere in care (in dezvoltarea urmatoare) voi salva datele pe care le trimit catre serverul
+    Recombee si intr-o baza de date locala, impreuna cu alte entitati relevate (de exemplu o tabela de loguri
+    in care se vor salva toate request-urile si informatiile aferente, pentru a putea urmari mai usor si a face
+    debugging mai usor)
+
+* Recombee.postman_collection.json
+    -> aceasta este colectia cu API-urile din Postman, pe care le-am folosit pentru a-mi testa implementarile
+
+* Intr-o dezvoltare ulterioara, urmeaza sa implementez si o comanda de upload in masa al datelor cerute (produse,
+proprietati, valori)

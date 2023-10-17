@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "bdb9d35c-5981-41ea-ac2d-d459e7ed09e1",
+		"name": "Recombee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Add Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/:itemId/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								":itemId",
+								"upload"
+							],
+							"variable": [
+								{
+									"key": "itemId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Item Values",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "bookID",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Harry Potter",
+									"type": "text"
+								},
+								{
+									"key": "authors",
+									"value": "J.K. Roqling/Mary GrandPre",
+									"type": "text"
+								},
+								{
+									"key": "averageRating",
+									"value": "4.57",
+									"type": "text"
+								},
+								{
+									"key": "isbn",
+									"value": "0439785960",
+									"type": "text"
+								},
+								{
+									"key": "isbn13",
+									"value": "9780439785969",
+									"type": "text"
+								},
+								{
+									"key": "languageCode",
+									"value": "eng",
+									"type": "text"
+								},
+								{
+									"key": "numPages",
+									"value": "652",
+									"type": "text"
+								},
+								{
+									"key": "ratingsCount",
+									"value": "2095690",
+									"type": "text"
+								},
+								{
+									"key": "textReviewsCount",
+									"value": "27591",
+									"type": "text"
+								},
+								{
+									"key": "publicationDate",
+									"value": "9/16/2006",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Scholastic Inc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8010/item/:itemId/set-values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								":itemId",
+								"set-values"
+							],
+							"variable": [
+								{
+									"key": "itemId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/:item/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								":item",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "item",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item Property",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/add-property/:propertyName/:type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								"add-property",
+								":propertyName",
+								":type"
+							],
+							"variable": [
+								{
+									"key": "propertyName",
+									"value": "publisher"
+								},
+								{
+									"key": "type",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Item Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/properties/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								"properties",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deete Item Property",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/delete-property/:propertyName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								"delete-property",
+								":propertyName"
+							],
+							"variable": [
+								{
+									"key": "propertyName",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item Property Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/:property/property-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								":property",
+								"property-info"
+							],
+							"variable": [
+								{
+									"key": "property",
+									"value": "title"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item Values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/item/:itemId/values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"item",
+								":itemId",
+								"values"
+							],
+							"variable": [
+								{
+									"key": "itemId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
